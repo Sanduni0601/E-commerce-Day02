@@ -67,5 +67,11 @@ public List<Student> getStudentByAge() {
 
 }
 
+@GetMapping("/sorted-gpa")
+public List<Student> getStuByGPA(){
+    List<Student> sortedList = new ArrayList<>(students);
+    sortedList.sort((s1,s2)->Double.compare(s2.getGpa(), s1.getGpa()));
+    return sortedList;
+}
 
 }
