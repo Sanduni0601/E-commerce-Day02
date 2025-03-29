@@ -21,12 +21,19 @@ public class AppController{
         return "My Age is: "+age;
     }
 
+    List <Student> students = new ArrayList<Student>();
     Student s1 = new Student("Ict01","John",23,"ICT",3.7);
-    Student s2 = new Student("Ict02","Alice",25,"ICT",3.2);
+    Student s2 = new Student("Ict02","Alice",22,"ICT",3.2);
     Student s3 = new Student("Ict03","Bob",24,"CS",2.9);
     Student s4 = new Student("Ict04","Johnny",23,"ICT",3.5);
 
-    List <Student> students = new ArrayList<Student>();
+    {
+        students.add(s1);
+    students.add(s2);
+    students.add(s3);
+    students.add(s4);
+    }
+    
 @GetMapping("/student")
 public Student getStudent(){
     return s1;
@@ -34,11 +41,7 @@ public Student getStudent(){
 
 @GetMapping("/students")
 public List<Student> getStudents(){
-    students.add(s1);
-    students.add(s2);
-    students.add(s3);
-    students.add(s4);
-
+    
     return students;
 }
 
@@ -50,5 +53,17 @@ public Student getStudent(@PathVariable("id") String regno){
         }
     }
     return null;
+}
+
+@GetMapping("/age-range")
+public List<Student> getStudentByAge() {
+    List<Student> result = new ArrayList<>();
+    for (Student student : students) {
+        if (student.getAge() >= 20 && student.getAge() <= 23) {
+            result.add(student);
+        }
+    }
+   return result; 
+
 }
 }
