@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -81,4 +82,20 @@ public Student addStudent(@RequestBody Student student){
     students.add(student);
     return student;
 }
+
+@GetMapping("/")
+public List<Student> getAllStudents(){
+    return students;
+}
+
+@PutMapping("/update/{id}")
+    public Student updateStudent(@PathVariable("id") String regNo, @RequestBody Student updatedStudent) {
+        for (int i = 0; i < students.size(); i++) {
+            if (students.get(i).getRegNo().equals(regNo)) {
+                students.set(i, updatedStudent);
+                return updatedStudent;
+            }
+        }
+        return null;
+    }
 }
