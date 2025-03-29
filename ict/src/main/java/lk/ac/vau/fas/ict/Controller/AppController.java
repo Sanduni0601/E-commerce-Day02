@@ -84,10 +84,6 @@ public Student addStudent(@RequestBody Student student){
     return student;
 }
 
-@GetMapping("/")
-public List<Student> getAllStudents(){
-    return students;
-}
 
 @PutMapping("/update/{id}")
     public Student updateStudent(@PathVariable("id") String regNo, @RequestBody Student updatedStudent) {
@@ -99,7 +95,6 @@ public List<Student> getAllStudents(){
         }
         return null;
     }
-
     @DeleteMapping("/delete/{id}")
     public String deleteStudent(@PathVariable("id") String regNo) {
         students.removeIf(student -> student.getRegNo().equals(regNo));
